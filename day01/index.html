@@ -8,11 +8,24 @@
 <body>
     <h1> Hello Day 01 Page</h1>
 
+    <input id="input-name" />
+    <button id="cwr-test"> 테스트버튼 </button>
+
 
     <script>
         console.log("hello")
         console.log("202258006")
         console.log("최우림")
+
+        var cwrtest = document.getElementById("cwr-test")
+        var inputName = document.getElementById("input-name")
+
+
+        cwrtest.addEventListener('click',()=> {
+             //클릭하면 실행
+            console.log("안녕하세요" + inputName.value + "님")
+
+        } )
     </script>
 
 </body>
