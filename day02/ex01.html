@@ -6,15 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>counter : 0</h1>
-    <button id="cwr-test" > Inc </button>
+    <h1 id= "counter-output" >counter : 0</h1>
+    <button id="cwr-inc" > Inc </button>
+    <button id="cwr-dec" > Dec </button>
 
 
     <script>
-        var cwrInc= document.getElementById("cwr-test");
+        var counterOutput = document.getElementById("counter-output")
+        var cwrInc= document.getElementById("cwr-inc");
+        var counter = 0 //변수 선언
+        var cwrDec = document.getElementById("cwr-dec");
+
         cwrInc.addEventListener('click', ()=> {
-           console.log('click test')
+           console.log('click test' + counter)
+           counter = counter + 1
+           counterOutput.innerText = "counter : " + counter
         })
+
+        cwrDec.addEventListener('click', () => {
+            console.log('click test' + counter)
+            counter = counter - 1
+            counterOutput.innerText = "counter : " + counter;
+        });
     </script>
 
 
