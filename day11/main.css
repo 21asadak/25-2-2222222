@@ -29,3 +29,16 @@ height: 100vh;
     margin-bottom: 30px;
 }
 
+.top-right {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 20px;
+  }
