@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Beacon Navigation</title>
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        /* 기본 설정 */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column; /* 세로로 정렬 */
+            font-family: Arial, sans-serif;
+        }
+
+        /* 상단 헤더 */
+        header {
+            background: #87e96f;
+            color: white;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px 0;
+        }
+
+        /* 메뉴바 */
+        nav {
+            background: #52be37;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* 지도: flex-grow로 남은 공간 100% 차지 */
+        #map {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #357a38;
+            color: white;
+            text-align: right;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    GBN(Global Beacon Navigation)
+</header>
+
+<nav>
+    <a href="#">서비스 소개</a>
+    <a href="#">기술 구조</a>
+    <a href="#">설치 지역</a>
+    <a href="#">3D 지도</a>
+    <a href="#">문의</a>
+</nav>
+
+<div id="map"></div>
+
+<footer>
+    Team 등교시작 Members : 
+    202158031 이정운 / 202258006 최우림 / 
+    202258014 안승진 / 202258018 배준원 /
+    202412308 하성경
+</footer>
+
+<script>
+    // 지도 생성
+    var map = L.map('map', {
+        maxBounds: [[-85, -180], [85, 180]],
+        maxBoundsViscosity: 1.0
+    }).setView([20, 0], 2);
+
+    // 타일 추가
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom: 2,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // 지도 클릭하면 비콘 자동 설치
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        L.marker([lat, lng]).addTo(map)
+            .bindPopup("수동 비콘 설치됨<br>위도: " + lat.toFixed(4) + "<br>경도: " + lng.toFixed(4))
+            .openPopup();
+    });
+</script>
+
+</body>
+</html>
